@@ -20,23 +20,6 @@ An enterprise-grade financial analysis platform powered by 6 specialized AI agen
 - Python 3.8+
 - OpenAI API key
 
-### Installation
-
-```bash
-git clone https://github.com/Insybell/Financial_Multi_Agent_System.git
-cd Financial_Multi_Agent_System
-
-# Create virtual environment
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Set up environment variables
-echo "OPENAI_API_KEY=your_openai_api_key_here" > .env
-```
-
 ### Demo
 
 ```bash
