@@ -1,10 +1,3 @@
-# mcp/mcp_client.py
-"""
-MCP Protocol Client for Financial Multi-Agent System
-Client interface for communicating with MCP server
-Author: Zhang Weiling (Insybell)
-"""
-
 import asyncio
 import json
 import logging
