@@ -1,9 +1,3 @@
-# core/models.py
-"""
-Data models for the Financial Multi-Agent System
-Author: Zhang Weiling (Insybell)
-"""
-
 from dataclasses import dataclass, field
 from typing import Dict, List, Optional, Any
 from datetime import datetime
