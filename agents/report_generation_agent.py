@@ -35,9 +35,9 @@ class ReportGenerationAgent(BaseFinancialAgent):
         # Report templates
         self.report_templates = {
             "individual_security": self.generate_individual_security_report,
-            "portfolio": self.generate_portfolio_report,
-            "market_overview": self.generate_market_overview_report,
-            "risk_summary": self.generate_risk_summary_report
+            #"portfolio": self.generate_portfolio_report,
+            #"market_overview": self.generate_market_overview_report,
+            #"risk_summary": self.generate_risk_summary_report
         }
         
         # Register message handlers
