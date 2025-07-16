@@ -1,14 +1,14 @@
 # 🚀 Financial Multi-Agent System - Complete Testing Guide
 
-Step 1: Start the Web Server
+## **Step 1: Start the Web Server**
 
 Open your terminal and navigate to your project directory:
 
-'''bash 
+```bash
 cd /path/to/your/Financial_Multi_Agent_System
-'''
+```
 
-Activate the virtual environment:
+Activate your virtual environment:
 
 ```bash
 source venv/bin/activate  # On macOS/Linux
@@ -36,7 +36,7 @@ INFO:     Application startup complete.
 INFO:     Uvicorn running on http://localhost:8000 (Press CTRL+C to quit)
 ```
 
-**✅ Success Indicator:** Should see "Financial Multi-Agent System started successfully"
+**✅ Success Indicator:** You should see "Financial Multi-Agent System started successfully"
 
 ---
 
@@ -44,7 +44,7 @@ INFO:     Uvicorn running on http://localhost:8000 (Press CTRL+C to quit)
 
 **IMPORTANT:** Keep the first terminal running with the server!
 
-Open a **NEW terminal window/tab** and activate the virtual environment:
+Open a **NEW terminal window/tab** and activate your virtual environment:
 
 ```bash
 source venv/bin/activate  # On macOS/Linux
@@ -56,13 +56,13 @@ venv\Scripts\activate     # On Windows
 
 ## **Step 3: Test the Web Interface**
 
-Open the web browser and visit:
+Open your web browser and visit:
 
 ```
 http://localhost:8000
 ```
 
-**Expected Result:**  Should see a beautiful web interface showing:
+**Expected Result:** You should see a beautiful web interface showing:
 - 🤖 Financial Multi-Agent System title
 - ✅ System Status: Running
 - 6 Agents Active | Real-time Analysis Ready
@@ -73,7 +73,7 @@ http://localhost:8000
 
 ## **Step 4: Test System Health**
 
-In  **second terminal**, run:
+In your **second terminal**, run:
 
 ```bash
 curl http://localhost:8000/health
@@ -265,7 +265,7 @@ http://localhost:8000/redoc
 
 ## **Step 10: Monitor Server Logs**
 
-In  **first terminal** (where the server is running), you should see logs like:
+In your **first terminal** (where the server is running), you should see logs like:
 
 ```
 INFO:     ::1:XXXXX - "GET /health HTTP/1.1" 200 OK
@@ -327,7 +327,7 @@ curl -X POST "http://localhost:8000/analyze" \
 
 ## **Step 13: Shutdown the System**
 
-When  done testing:
+When you're done testing:
 
 1. In the **first terminal** (server), press `Ctrl+C`
 2. Wait for graceful shutdown:
@@ -343,7 +343,9 @@ INFO:     Finished server process [XXXXX]
 
 ---
 
-🎉Successful!
+## **🎉 Congratulations!**
+
+You've successfully tested your complete Financial Multi-Agent System! The system can:
 
 ✅ **Analyze individual stocks** with comprehensive metrics  
 ✅ **Process multiple stocks** simultaneously  
@@ -355,6 +357,8 @@ INFO:     Finished server process [XXXXX]
 ✅ **Scale to analyze** up to 10 stocks per request  
 ✅ **Maintain system health** with 6 specialized AI agents  
 
-Financial Multi-Agent System is now ready for production use! 🚀📈💼
+Your Financial Multi-Agent System is now ready for production use! 🚀📈💼
 
 
+
+ 
