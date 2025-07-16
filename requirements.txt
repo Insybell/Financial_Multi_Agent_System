@@ -1,6 +1,3 @@
-# Financial Multi-Agent System Dependencies
-# Author: Zhang Weiling (Insybell)
-
 # Core AI and LLM
 langchain>=0.1.0
 langchain-openai>=0.1.0
