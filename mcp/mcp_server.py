@@ -1,10 +1,3 @@
-# mcp/mcp_server.py
-"""
-MCP Protocol Server for Financial Multi-Agent System
-Handles MCP protocol communication between agents
-Author: Zhang Weiling (Insybell)
-"""
-
 import asyncio
 import json
 import logging
