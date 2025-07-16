@@ -247,6 +247,41 @@ class FinancialGuardrails:
         
         return ValidationStatus.WARNING if issues else ValidationStatus.PASSED, issues
     
+    def check_data_quality(self, data: pd.DataFrame) -> float:
+        """Check data quality and return a score between 0 and 1"""
+        try:
+            if data.empty:
+                return 0.0
+            
+            quality_score = 1.0
+            
+            # Check for missing values
+            missing_ratio = data.isnull().sum().sum() / (len(data) * len(data.columns))
+            quality_score -= missing_ratio * 0.3
+            
+            # Check for sufficient data points
+            if len(data) < 50:
+                quality_score -= 0.2
+            
+            # Check for data completeness
+            required_columns = ['Open', 'High', 'Low', 'Close', 'Volume']
+            missing_columns = [col for col in required_columns if col not in data.columns]
+            if missing_columns:
+                quality_score -= len(missing_columns) * 0.1
+            
+            # Check for extreme values (likely data errors)
+            if 'Close' in data.columns:
+                price_changes = data['Close'].pct_change().dropna()
+                extreme_changes = price_changes[abs(price_changes) > 0.5]  # >50% change
+                if len(extreme_changes) > 0:
+                    quality_score -= len(extreme_changes) * 0.05
+            
+            return max(0.0, min(1.0, quality_score))
+            
+        except Exception as e:
+            logger.error(f"Error checking data quality: {str(e)}")
+            return 0.5  # Default middle score if error occurs
+    
     def _calculate_risk_level_from_metrics(self, metrics) -> RiskLevel:
         """Calculate risk level based on metrics"""
         risk_score = 0
@@ -332,3 +367,14 @@ class FinancialGuardrails:
         """Reset violation history"""
         self.violation_history.clear()
         logger.info("Guardrail violation history reset")
+
+           
+            
+        
+     
+     
+    
+         
+     
+      
+       
