@@ -1,9 +1,3 @@
-# core/base_agent.py
-"""
-Base agent class for the Financial Multi-Agent System
-Author: Zhang Weiling (Insybell)
-"""
-
 import asyncio
 import logging
 import uuid
