@@ -1,9 +1,3 @@
-# core/enums.py
-"""
-Enumerations and constants for the Financial Multi-Agent System
-Author: Zhang Weiling (Insybell)
-"""
-
 from enum import Enum, IntEnum
 
 
