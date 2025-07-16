@@ -7,12 +7,12 @@ from plotly.subplots import make_subplots
 import pandas as pd
 from datetime import datetime, timedelta
 from typing import Dict, List, Optional, Any
-from ..core.base_agent import BaseFinancialAgent
-from ..core.models import (
+from core.base_agent import BaseFinancialAgent
+from core.models import (
     FinancialReport, ReportSection, Recommendation, RiskAssessment, 
     MarketAnalysis, RiskMetrics, TechnicalIndicators
 )
-from ..core.enums import MessageType, Priority, ReportFormat, RiskLevel
+from core.enums import MessageType, Priority, ReportFormat, RiskLevel
 
 logger = logging.getLogger(__name__)
 
@@ -34,10 +34,10 @@ class ReportGenerationAgent(BaseFinancialAgent):
         
         # Report templates
         self.report_templates = {
-            "individual_security": self._generate_individual_security_report,
-            "portfolio": self._generate_portfolio_report,
-            "market_overview": self._generate_market_overview_report,
-            "risk_summary": self._generate_risk_summary_report
+            "individual_security": self.generate_individual_security_report,
+            "portfolio": self.generate_portfolio_report,
+            "market_overview": self.generate_market_overview_report,
+            "risk_summary": self.generate_risk_summary_report
         }
         
         # Register message handlers
