@@ -1,10 +1,3 @@
-# agents/business_intelligence_agent.py
-"""
-Business Intelligence Agent for Financial Multi-Agent System
-Analyzes market trends and generates business insights
-Author: Zhang Weiling (Insybell)
-"""
-
 import asyncio
 import json
 import logging
