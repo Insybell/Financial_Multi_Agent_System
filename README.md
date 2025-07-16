@@ -1,6 +1,6 @@
-# Financial Multi-Agent System
+# 🔔 Financial Multi-Agent System
 
-**Intelligence that knows when to ring** - *Insybell*
+**Intelligence that knows when to ring** - *🔔 Insybell*
 
 An enterprise-grade financial analysis platform powered by 6 specialized AI agents working in harmony to deliver intelligent investment insights, comprehensive risk assessment, and automated reporting.
 
@@ -253,7 +253,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 - **Issues**: GitHub Issues for bug reports and feature requests
 - **Discussions**: GitHub Discussions for questions and community support
-- **Email**: support@insybell.com for professional support
+- **Email**: natalie@insybell.com for professional support
 
 ## Roadmap
 
