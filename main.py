@@ -4,6 +4,7 @@ import os
 import sys
 from datetime import datetime
 from typing import Dict, List, Optional, Any
+from contextlib import asynccontextmanager
 import click
 from dotenv import load_dotenv
 import os
@@ -44,6 +45,7 @@ class FinancialMultiAgentSystem:
         self.agents = {}
         self.system_status = "initializing"
         self.workflow_history = []
+        self.agent_tasks = []  # Store background tasks
         
         # Initialize agents
         self._initialize_agents()
@@ -115,7 +117,39 @@ class FinancialMultiAgentSystem:
             raise
     
     async def start_system(self):
-        """Start the multi-agent system"""
+        """Start the multi-agent system (for web server - non-blocking)"""
+        try:
+            logger.info("Starting Financial Multi-Agent System...")
+            
+            # Start message processing for all agents (don't await them)
+            self.agent_tasks = []
+            for agent_name, agent in self.agents.items():
+                task = asyncio.create_task(
+                    agent.start_message_processing(),
+                    name=f"{agent_name}_processing"
+                )
+                self.agent_tasks.append(task)
+            
+            # Start health monitoring (don't await it)
+            health_task = asyncio.create_task(
+                self._health_monitor(),
+                name="health_monitor"
+            )
+            self.agent_tasks.append(health_task)
+            
+            self.system_status = "running"
+            logger.info("Financial Multi-Agent System started successfully")
+            
+            # Return immediately instead of waiting for tasks
+            return self.agent_tasks
+            
+        except Exception as e:
+            logger.error(f"System startup failed: {str(e)}")
+            self.system_status = "error"
+            raise
+    
+    async def start_system_and_wait(self):
+        """Start the system and wait for completion (for CLI commands)"""
         try:
             logger.info("Starting Financial Multi-Agent System...")
             
@@ -138,7 +172,7 @@ class FinancialMultiAgentSystem:
             self.system_status = "running"
             logger.info("Financial Multi-Agent System started successfully")
             
-            # Wait for all tasks
+            # Wait for all tasks (this will block indefinitely)
             await asyncio.gather(*agent_tasks)
             
         except Exception as e:
@@ -328,6 +362,16 @@ class FinancialMultiAgentSystem:
             logger.info("Shutting down Financial Multi-Agent System...")
             self.system_status = "shutting_down"
             
+            # Cancel all background tasks
+            if self.agent_tasks:
+                for task in self.agent_tasks:
+                    if not task.done():
+                        task.cancel()
+                
+                # Wait for tasks to be cancelled
+                await asyncio.gather(*self.agent_tasks, return_exceptions=True)
+                self.agent_tasks = []
+            
             # Cleanup all agents
             cleanup_tasks = []
             for agent_name, agent in self.agents.items():
@@ -342,6 +386,10 @@ class FinancialMultiAgentSystem:
             
         except Exception as e:
             logger.error(f"Error during shutdown: {str(e)}")
+    
+    async def cleanup(self):
+        """Alias for shutdown_system for compatibility"""
+        await self.shutdown_system()
     
     async def get_workflow_history(self, limit: int = 10) -> List[Dict[str, Any]]:
         """Get recent workflow history"""
@@ -384,7 +432,7 @@ def analyze(ctx, symbols, output):
         
         try:
             # Start system in background
-            system_task = asyncio.create_task(system.start_system())
+            system_task = asyncio.create_task(system.start_system_and_wait())
             
             # Wait a moment for system to initialize
             await asyncio.sleep(2)
@@ -430,7 +478,7 @@ def market_summary(ctx):
         
         try:
             # Start system
-            system_task = asyncio.create_task(system.start_system())
+            system_task = asyncio.create_task(system.start_system_and_wait())
             await asyncio.sleep(2)
             
             # Get market summary
@@ -464,7 +512,7 @@ def health(ctx):
         
         try:
             # Start system
-            system_task = asyncio.create_task(system.start_system())
+            system_task = asyncio.create_task(system.start_system_and_wait())
             await asyncio.sleep(2)
             
             # Check health
@@ -502,35 +550,223 @@ def serve(ctx, port, host):
     # Import FastAPI here to avoid dependency issues
     try:
         from fastapi import FastAPI, HTTPException
-        from fastapi.responses import JSONResponse
+        from fastapi.responses import HTMLResponse, JSONResponse
+        from fastapi.middleware.cors import CORSMiddleware
+        from pydantic import BaseModel
         import uvicorn
     except ImportError:
         click.echo("FastAPI not installed. Install with: pip install fastapi uvicorn")
         return
     
-    app = FastAPI(title="Financial Multi-Agent System API", version="1.0.0")
+    # Global system instance
     system = None
     
-    @app.on_event("startup")
-    async def startup():
+    @asynccontextmanager
+    async def lifespan(app: FastAPI):
+        """Lifespan context manager for startup and shutdown"""
         global system
-        system = FinancialMultiAgentSystem()
-        # Start system in background
-        asyncio.create_task(system.start_system())
-        await asyncio.sleep(2)  # Wait for initialization
+        system_task = None
+        try:
+            # Startup
+            system = FinancialMultiAgentSystem()
+            
+            # Start system in background task (don't await it)
+            system_task = asyncio.create_task(system.start_system())
+            
+            # Give system a moment to initialize
+            await asyncio.sleep(2)
+            
+            click.echo("Financial Multi-Agent System started successfully")
+            yield
+            
+        except Exception as e:
+            click.echo(f"Error during startup: {e}")
+            raise
+        finally:
+            # Shutdown
+            if system:
+                await system.cleanup()
+                click.echo("Financial Multi-Agent System stopped")
+            if system_task and not system_task.done():
+                system_task.cancel()
+                try:
+                    await system_task
+                except asyncio.CancelledError:
+                    pass
     
-    @app.on_event("shutdown")
-    async def shutdown():
-        if system:
-            await system.shutdown_system()
+    # Create FastAPI app with lifespan
+    app = FastAPI(
+        title="Financial Multi-Agent System",
+        description="A multi-agent system for financial analysis and recommendations",
+        version="1.0.0",
+        lifespan=lifespan
+    )
     
+    # Add CORS middleware
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=["*"],
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
+    
+    # Pydantic models
+    class AnalysisRequest(BaseModel):
+        symbols: List[str]
+        options: Optional[dict] = None
+    
+    # Root endpoint
+    @app.get("/", response_class=HTMLResponse)
+    async def read_root():
+        return HTMLResponse(content="""
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Financial Multi-Agent System</title>
+            <style>
+                body { font-family: Arial, sans-serif; margin: 40px; background: #f8f9fa; }
+                .container { max-width: 1200px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+                h1 { color: #333; text-align: center; margin-bottom: 30px; }
+                .status { text-align: center; margin: 20px 0; padding: 15px; background: #d4edda; border: 1px solid #c3e6cb; border-radius: 5px; color: #155724; }
+                .endpoint { margin: 20px 0; padding: 20px; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #007bff; }
+                .method { font-weight: bold; color: #007bff; font-size: 16px; margin-bottom: 10px; }
+                .description { color: #666; margin-bottom: 15px; }
+                pre { background: #f1f3f4; padding: 15px; border-radius: 5px; overflow-x: auto; border: 1px solid #ddd; }
+                .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 20px; margin-top: 30px; }
+                .feature { padding: 20px; background: #fff; border: 1px solid #ddd; border-radius: 8px; }
+                .feature h3 { color: #333; margin-top: 0; }
+                a { color: #007bff; text-decoration: none; }
+                a:hover { text-decoration: underline; }
+            </style>
+        </head>
+        <body>
+            <div class="container">
+                <h1>🤖 Financial Multi-Agent System</h1>
+                <div class="status">
+                    <strong>System Status: Running ✅</strong><br>
+                    6 Agents Active | Real-time Analysis Ready
+                </div>
+                
+                <h2>🔗 API Endpoints</h2>
+                
+                <div class="endpoint">
+                    <div class="method">POST /analyze</div>
+                    <div class="description">Analyze financial symbols using the multi-agent system</div>
+                    <pre>curl -X POST "http://localhost:8000/analyze" \\
+-H "Content-Type: application/json" \\
+-d '["AAPL", "MSFT", "GOOGL"]'</pre>
+                </div>
+                
+                <div class="endpoint">
+                    <div class="method">GET /health</div>
+                    <div class="description">Check system health and agent status</div>
+                    <pre>curl http://localhost:8000/health</pre>
+                </div>
+                
+                <div class="endpoint">
+                    <div class="method">GET /status</div>
+                    <div class="description">Get detailed system status information</div>
+                    <pre>curl http://localhost:8000/status</pre>
+                </div>
+                
+                <div class="endpoint">
+                    <div class="method">GET /market-summary</div>
+                    <div class="description">Get current market overview</div>
+                    <pre>curl http://localhost:8000/market-summary</pre>
+                </div>
+                
+                <div class="endpoint">
+                    <div class="method">GET /docs</div>
+                    <div class="description"><a href="/docs">Interactive API Documentation (Swagger UI)</a></div>
+                </div>
+                
+                <div class="endpoint">
+                    <div class="method">GET /redoc</div>
+                    <div class="description"><a href="/redoc">Alternative API Documentation (ReDoc)</a></div>
+                </div>
+                
+                <h2>🔧 System Features</h2>
+                <div class="grid">
+                    <div class="feature">
+                        <h3>Multi-Agent Intelligence</h3>
+                        <p>6 specialized agents working together for comprehensive financial analysis</p>
+                    </div>
+                    <div class="feature">
+                        <h3>Real-time Data</h3>
+                        <p>Live financial data processing with yfinance integration</p>
+                    </div>
+                    <div class="feature">
+                        <h3>Risk Assessment</h3>
+                        <p>VaR, Sharpe ratio, and drawdown analysis</p>
+                    </div>
+                    <div class="feature">
+                        <h3>AI Insights</h3>
+                        <p>LLM-powered market intelligence using OpenAI GPT-4</p>
+                    </div>
+                </div>
+            </div>
+        </body>
+        </html>
+        """)
+    
+    # Favicon handler
+    @app.get("/favicon.ico")
+    async def favicon():
+        return JSONResponse(content={"message": "No favicon available"}, status_code=404)
+    
+    # Health check endpoint
     @app.get("/health")
     async def get_health():
         if not system:
             raise HTTPException(status_code=503, detail="System not initialized")
-        health_status = await system.get_system_health()
-        return health_status
+        
+        try:
+            health_status = await system.get_system_health()
+            return {
+                "status": health_status.status,
+                "system": "Financial Multi-Agent System",
+                "agents": {
+                    "active": health_status.active_agents,
+                    "failed": health_status.failed_agents,
+                    "total": len(system.agents)
+                },
+                "message_queue_size": health_status.message_queue_size,
+                "timestamp": health_status.last_health_check,
+                "performance_metrics": health_status.performance_metrics
+            }
+        except Exception as e:
+            return {
+                "status": "error",
+                "error": str(e),
+                "system": "Financial Multi-Agent System"
+            }
     
+    # System status endpoint
+    @app.get("/status")
+    async def get_status():
+        return {
+            "status": "running",
+            "system": "Financial Multi-Agent System",
+            "agents": [
+                "DataCollectionAgent",
+                "BusinessIntelligenceAgent", 
+                "RiskAssessmentAgent",
+                "RecommendationAgent",
+                "ReportGenerationAgent",
+                "TriageAgent"
+            ],
+            "endpoints": ["/", "/analyze", "/health", "/status", "/market-summary", "/docs", "/redoc"],
+            "features": [
+                "Multi-Agent Intelligence",
+                "Real-time Data Processing",
+                "Risk Assessment",
+                "AI-Enhanced Insights",
+                "Professional Reporting"
+            ]
+        }
+    
+    # Market summary endpoint
     @app.get("/market-summary")
     async def get_market_summary():
         if not system:
@@ -538,6 +774,7 @@ def serve(ctx, port, host):
         summary = await system.get_market_summary()
         return summary
     
+    # Main analysis endpoint
     @app.post("/analyze")
     async def analyze_symbols(symbols: List[str]):
         if not system:
@@ -546,18 +783,23 @@ def serve(ctx, port, host):
         if not symbols:
             raise HTTPException(status_code=400, detail="No symbols provided")
         
+        if len(symbols) > 10:
+            raise HTTPException(status_code=400, detail="Maximum 10 symbols allowed")
+        
         try:
             results = await system.analyze_symbols(symbols)
             return results
         except Exception as e:
             raise HTTPException(status_code=500, detail=str(e))
     
+    # Agents info endpoint
     @app.get("/agents")
     async def get_agents():
         if not system:
             raise HTTPException(status_code=503, detail="System not initialized")
         return system.get_agent_info()
     
+    # Workflows endpoint
     @app.get("/workflows")
     async def get_workflows():
         if not system:
@@ -581,7 +823,7 @@ def demo(ctx):
         try:
             # Start system
             click.echo("Starting system...")
-            system_task = asyncio.create_task(system.start_system())
+            system_task = asyncio.create_task(system.start_system_and_wait())
             await asyncio.sleep(3)
             
             # Demo symbols
@@ -634,3 +876,17 @@ def demo(ctx):
 
 if __name__ == "__main__":
     cli()
+
+
+
+            
+           
+          
+   
+
+
+            
+
+   
+
+ 
