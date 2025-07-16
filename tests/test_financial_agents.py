@@ -1,9 +1,3 @@
-# tests/test_financial_agents.py
-"""
-Comprehensive test suite for Financial Multi-Agent System
-Author: Zhang Weiling (Insybell)
-"""
-
 import asyncio
 import pytest
 import pandas as pd
