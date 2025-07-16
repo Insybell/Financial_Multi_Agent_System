@@ -1,10 +1,3 @@
-# agents/recommendation_agent.py
-"""
-Recommendation Agent for Financial Multi-Agent System
-Generates investment recommendations based on analysis and risk assessment
-Author: Zhang Weiling (Insybell)
-"""
-
 import asyncio
 import json
 import logging
