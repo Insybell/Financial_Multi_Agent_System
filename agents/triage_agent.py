@@ -1,10 +1,3 @@
-# agents/triage_agent.py
-"""
-Triage Agent for Financial Multi-Agent System
-Prioritizes and routes financial analysis requests based on urgency and importance
-Author: Zhang Weiling (Insybell)
-"""
-
 import asyncio
 import logging
 import numpy as np
