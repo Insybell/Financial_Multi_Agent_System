@@ -62,7 +62,7 @@ class FinancialGuardrails:
             return ValidationStatus.FAILED, issues
         
         # Check symbol format
-        if not isinstance(symbol, str) or len(symbol) > 6 or not symbol.replace('.', '').isalnum():
+        if not isinstance(symbol, str) or len(symbol) > 6 or not symbol.replace('^', '').isalnum():
             issues.append(f"Invalid symbol format: {symbol}")
             return ValidationStatus.FAILED, issues
         
