@@ -1,5 +1,5 @@
 # 🔔 Financial Multi-Agent System - Complete Implementation
-## Built by Zhang Weiling (Insybell) - "Intelligence that knows when to ring"
+## Built by Natalie Cheong (Insybell) - "Intelligence that knows when to ring"
 
 ### 🎯 **SYSTEM OVERVIEW**
 A comprehensive financial analysis platform using 6 specialized AI agents communicating through MCP protocol to provide intelligent investment insights, risk assessment, and automated reporting.
