@@ -247,7 +247,7 @@ Supports deployment on:
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+🔒 Proprietary – See LICENSE.md for details
 
 ## Support
 
