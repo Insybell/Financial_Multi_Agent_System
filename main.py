@@ -5,6 +5,11 @@ import sys
 from datetime import datetime
 from typing import Dict, List, Optional, Any
 import click
+from dotenv import load_dotenv
+import os
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Add project root to Python path
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
