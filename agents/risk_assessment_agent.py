@@ -1,10 +1,3 @@
-# agents/risk_assessment_agent.py
-"""
-Risk Assessment Agent for Financial Multi-Agent System
-Calculates and evaluates various financial risks
-Author: Zhang Weiling (Insybell)
-"""
-
 import asyncio
 import logging
 import numpy as np
