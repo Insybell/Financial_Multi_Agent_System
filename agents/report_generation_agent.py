@@ -1,10 +1,3 @@
-# agents/report_generation_agent.py
-"""
-Report Generation Agent for Financial Multi-Agent System
-Generates comprehensive financial reports and visualizations
-Author: Zhang Weiling (Insybell)
-"""
-
 import asyncio
 import json
 import logging
