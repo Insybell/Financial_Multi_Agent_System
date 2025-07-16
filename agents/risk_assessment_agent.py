@@ -5,9 +5,9 @@ import pandas as pd
 from datetime import datetime, timedelta
 from typing import Dict, List, Optional, Any, Tuple
 from scipy import stats
-from ..core.base_agent import BaseFinancialAgent
-from ..core.models import RiskAssessment, RiskMetrics, MarketAnalysis
-from ..core.enums import MessageType, Priority, RiskLevel
+from core.base_agent import BaseFinancialAgent
+from core.models import RiskAssessment, RiskMetrics, MarketAnalysis
+from core.enums import MessageType, Priority, RiskLevel
 
 logger = logging.getLogger(__name__)
 
