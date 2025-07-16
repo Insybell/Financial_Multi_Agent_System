@@ -1,12 +1,12 @@
 # 🚀 Financial Multi-Agent System - Complete Testing Guide
 
-## **Step 1: Start the Web Server**
+Step 1: Start the Web Server
 
-Open the terminal and navigate to the project directory:
+Open your terminal and navigate to your project directory:
 
-```bash
+'''bash 
 cd /path/to/your/Financial_Multi_Agent_System
-```
+'''
 
 Activate the virtual environment:
 
