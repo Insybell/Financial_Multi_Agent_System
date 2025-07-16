@@ -195,20 +195,6 @@ We welcome contributions! Please follow these steps:
 4. Run tests
 5. Submit a pull request
 
-### Development Setup
-
-```bash
-# Clone repository
-git clone https://github.com/Insybell/Financial_Multi_Agent_System.git
-cd Financial_Multi_Agent_System
-
-# Install development dependencies
-pip install -r requirements.txt
-
-# Run tests
-python -m pytest tests/ -v
-```
-
 ## Deployment
 
 ### Docker Deployment
