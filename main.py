@@ -1,10 +1,3 @@
-# main.py
-"""
-Financial Multi-Agent System - Main Application
-Author: Zhang Weiling (Insybell)
-Description: Complete financial analysis system using multiple AI agents
-"""
-
 import asyncio
 import logging
 import os
