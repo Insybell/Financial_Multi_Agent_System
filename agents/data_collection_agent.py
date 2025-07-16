@@ -1,10 +1,3 @@
-# agents/data_collection_agent.py
-"""
-Data Collection Agent for Financial Multi-Agent System
-Collects and validates financial data from multiple sources
-Author: Zhang Weiling (Insybell)
-"""
-
 import asyncio
 import logging
 import pandas as pd
