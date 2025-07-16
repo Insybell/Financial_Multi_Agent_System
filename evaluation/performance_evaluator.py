@@ -1,10 +1,3 @@
-# evaluation/performance_evaluator.py
-"""
-Performance Evaluation Framework for Financial Multi-Agent System
-Comprehensive evaluation of system performance, accuracy, and efficiency
-Author: Zhang Weiling (Insybell)
-"""
-
 import asyncio
 import json
 import logging
