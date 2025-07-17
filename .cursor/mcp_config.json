@@ -1,1 +1,53 @@
-
+{
+    "mcp.servers": {
+      "financial-multi-agent-system": {
+        "command": "python",
+        "args": ["mcp/dev_server.py"],
+        "cwd": ".",
+        "env": {
+          "PYTHONPATH": ".",
+          "OPENAI_API_KEY": "${OPENAI_API_KEY}",
+          "FINANCIAL_DEV_MODE": "true"
+        },
+        "capabilities": [
+          "code_generation",
+          "financial_analysis", 
+          "performance_optimization",
+          "risk_calculation",
+          "real_time_data",
+          "agent_orchestration"
+        ],
+        "settings": {
+          "auto_start": true,
+          "restart_on_error": true,
+          "log_level": "INFO",
+          "development_mode": true
+        }
+      }
+    },
+    "cursor.financial_mcp": {
+      "enabled": true,
+      "features": {
+        "intelligent_completion": true,
+        "real_time_validation": true,
+        "performance_monitoring": true,
+        "live_data_integration": true,
+        "development_dashboard": true
+      },
+      "completion_settings": {
+        "financial_patterns": true,
+        "agent_methods": true,
+        "risk_calculations": true,
+        "market_analysis": true
+      }
+    },
+    "editor.quickSuggestions": {
+      "strings": true,
+      "comments": true,
+      "other": true
+    },
+    "editor.suggestOnTriggerCharacters": true,
+    "editor.acceptSuggestionOnEnter": "on",
+    "python.analysis.completeFunctionParens": true,
+    "python.analysis.autoImportCompletions": true
+  }
