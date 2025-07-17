@@ -1,7 +1,3 @@
-// dashboard_chart_fix.js
-// Add this to fix the chart rendering issues
-
-// Fix 1: Initialize charts with sample data
 function initializeChartsWithData() {
     console.log('Initializing charts with sample data...');
     
