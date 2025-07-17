@@ -4,43 +4,38 @@
 
 An enterprise-grade financial analysis platform powered by 6 specialized AI agents working in harmony to deliver intelligent investment insights, comprehensive risk assessment, and automated reporting.
 
-## 🎥 Live Demo
+## 🎥 Live Dashboard Demo
 
-<!-- OPTION 1: Direct video embed (if hosting on GitHub) -->
-https://github.com/user-attachments/assets/your-video-id
+### 📹 Watch the Complete System in Action (2 Minutes)
 
-<!-- OPTION 2: Video as clickable thumbnail linking to external video -->
-[![Financial Multi-Agent System Demo](https://img.shields.io/badge/🎬-Watch%20Live%20Demo-blue?style=for-the-badge)](https://your-video-link.com)
+[![Watch Demo](https://img.shields.io/badge/🎬-Watch%20Live%20Dashboard%20Demo-blue?style=for-the-badge)](https://github.com/Insybell/Financial_Multi_Agent_System/blob/main/video/Financial%20Multi-Agent%20Dashboard.mp4)
 
-<!-- OPTION 3: GIF preview with video link -->
-![Live Dashboard Demo](docs/dashboard-demo.gif)
-*Click above to watch the full 2-minute live demo*
+**🎦 Demo Video:** [Financial Multi-Agent Dashboard.mp4](https://github.com/Insybell/Financial_Multi_Agent_System/blob/main/video/Financial%20Multi-Agent%20Dashboard.mp4)
 
-<!-- OPTION 4: Embedded video player (GitHub supports mp4) -->
-https://user-images.githubusercontent.com/your-username/your-video-file.mp4
+**Live Dashboard Features Demonstrated:**
+- 📊 **Real-time Market Data**: AAPL, MSFT, GOOGL with live price updates and change indicators
+- 📈 **Interactive Charts**: 30-day price trends, RSI, MACD with technical indicators  
+- ⚠️ **Risk Metrics**: Live VaR (95%), Sharpe ratio, max drawdown, volatility calculations
+- 🤖 **Agent Monitoring**: Real-time status of all 6 financial agents with queue sizes and processing counts
+- ⚡ **Performance Metrics**: System processing time, success rate, and throughput monitoring
+- 🔄 **Auto-refresh**: Live data updates every 10-15 seconds
 
-<!-- OPTION 5: Multiple format support -->
-<details>
-<summary>🎬 Watch Live Dashboard Demo (2 mins)</summary>
+### 🚀 Try the Demo Yourself
+```bash
+# Start the system (3 terminals)
+python main.py serve --port 8000           # Terminal 1: Main system
+python mcp/dev_server.py                   # Terminal 2: MCP development server
 
-### Real-Time Financial Data Dashboard
-Watch our MCP-enhanced dashboard in action with live market data, real-time charts, and agent monitoring.
+# Access live dashboard in browser
+http://localhost:8000/dev-dashboard
+```
 
-**Demo Features:**
-- ✅ Live market data for AAPL, MSFT, GOOGL
-- ✅ Real-time price charts and technical indicators  
-- ✅ Risk metrics with live VaR, Sharpe ratio calculations
-- ✅ Agent status monitoring with queue and processing metrics
-- ✅ Performance monitoring with system health metrics
-
-[🎬 **Watch Full Demo Video**](https://your-video-link.com)
-
-</details>
+---
 
 ## Features
 
 - **Multi-Agent Intelligence**: 6 specialized AI agents for superior analysis depth
-- **Real-time Analysis**: Live financial data processing with yfinance integration  
+- **Real-time Analysis**: Live financial data processing with yfinance integration
 - **MCP Integration**: Model Context Protocol for enhanced development experience
 - **Interactive Dashboard**: Real-time monitoring with live charts and metrics
 - **Comprehensive Risk Assessment**: VaR, Sharpe ratio, drawdown analysis
@@ -59,7 +54,7 @@ Watch our MCP-enhanced dashboard in action with live market data, real-time char
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/Financial_Multi_Agent_System.git
+git clone https://github.com/Insybell/Financial_Multi_Agent_System.git
 cd Financial_Multi_Agent_System
 
 # Set up virtual environment
@@ -68,6 +63,9 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 
 # Install dependencies
 pip install -r requirements.txt
+
+# Set up environment variables
+export OPENAI_API_KEY="your-openai-api-key"
 
 # Run the system demo
 python main.py demo
@@ -95,17 +93,18 @@ python main.py serve --port 8000
 *As demonstrated in the video above*
 
 ### Real-Time Components:
-- **📊 Price Charts**: Live 30-day price trends with moving averages
-- **📈 Technical Indicators**: RSI, MACD with overbought/oversold signals  
-- **⚠️ Risk Metrics**: Live VaR (95%), Sharpe ratio, max drawdown, volatility
-- **🤖 Agent Status**: Real-time monitoring of all 6 agents with queue sizes
-- **📋 Live Market Data**: Real-time AAPL, MSFT, GOOGL prices with change indicators
-- **⚡ Performance Monitor**: System processing time and throughput metrics
+- **📊 Price Charts**: Live 30-day price trends with moving averages for AAPL, MSFT, GOOGL
+- **📈 Technical Indicators**: RSI and MACD charts with overbought/oversold signals  
+- **⚠️ Risk Metrics**: Live VaR (95%), Sharpe ratio, max drawdown, volatility calculations
+- **🤖 Agent Status**: Real-time monitoring of all 6 agents with queue sizes and processing counts
+- **📋 Live Market Data**: Real-time stock prices with change indicators (green/red)
+- **⚡ Performance Monitor**: System processing time, success rate, and throughput metrics
 
 ### Dashboard Access:
 ```bash
-# Start the system
-python main.py serve --port 8000
+# Start the system (3 terminals as shown in video)
+python main.py serve --port 8000           # Terminal 1
+python mcp/dev_server.py                   # Terminal 2
 
 # Access live dashboard
 http://localhost:8000/dev-dashboard
@@ -130,7 +129,7 @@ The system consists of 6 specialized agents enhanced with MCP (Model Context Pro
 - **Development Tools**: Intelligent code generation and validation
 - **IDE Integration**: Enhanced Cursor IDE support with financial completions
 - **Live Data Streaming**: Real-time market data with WebSocket support
-- **Interactive Dashboard**: Professional monitoring interface
+- **Interactive Dashboard**: Professional monitoring interface (shown in demo)
 - **Performance Analysis**: Code optimization and system metrics
 
 ### Agent Communication Flow
@@ -141,11 +140,13 @@ Data Collection → Business Intelligence → Risk Assessment → Recommendation
                                 Triage Agent (orchestrates all)
                                     ↓
                             MCP Development Server (enhances all)
+                                    ↓
+                            Live Dashboard (visualizes all)
 ```
 
 ## Usage Examples
 
-### Live Dashboard (As Shown in Demo)
+### Live Dashboard (As Shown in Demo Video)
 
 ```bash
 # Terminal 1: Start main system
@@ -243,12 +244,12 @@ System Health: healthy
 Active Agents: 6
 ```
 
-### Live Dashboard Metrics (Real-time):
+### Live Dashboard Metrics (Real-time, as shown in video):
 ```
 📊 Live Market Data:
-- AAPL: $213.43 (+$2.93, +1.39%) 
-- MSFT: $507.88 (+$2.08, +0.41%)
-- GOOGL: $184.80 (+$1.55, +0.84%)
+- AAPL: $213.43 (+$2.93, +1.39%) ✅
+- MSFT: $507.88 (+$2.08, +0.41%) ✅
+- GOOGL: $184.80 (+$1.55, +0.84%) ✅
 
 ⚠️ Risk Metrics:
 - VaR (95%): -2.34%
@@ -256,8 +257,15 @@ Active Agents: 6
 - Max Drawdown: -8.92%
 - Volatility: 15.67%
 
-🤖 Agent Status: All 6 agents active
-⚡ Performance: 45.2ms avg, 96.7% success rate
+🤖 Agent Status: All 6 agents idle/active
+- DataCollectionAgent: Queue 0, Processed 196
+- BusinessIntelligenceAgent: Queue 0, Processed 196  
+- RiskAssessmentAgent: Queue 0, Processed 54
+- RecommendationAgent: Queue 0, Processed 240
+- ReportGenerationAgent: Queue 0, Processed 245
+- TriageAgent: Queue 0, Processed 200
+
+⚡ Performance: 45.2ms avg, 96.7% success rate, 15.7 req/min
 ```
 
 ## Key Components
@@ -272,7 +280,7 @@ Active Agents: 6
 - **Development**: Enhanced IDE integration, intelligent code completion
 
 ### MCP Integration Features
-- **Real-time Dashboard**: Live financial data visualization
+- **Real-time Dashboard**: Live financial data visualization (demonstrated in video)
 - **Development Tools**: Intelligent code generation and validation  
 - **IDE Enhancement**: Cursor IDE integration with financial completions
 - **Performance Monitoring**: System metrics and optimization suggestions
@@ -315,7 +323,7 @@ python -m pytest tests/test_financial_agents.py::TestPerformanceBenchmarks -v
 - **Throughput**: 20+ requests/minute
 - **System Reliability**: 99.9% uptime
 - **Dashboard Response**: <50ms average API response time
-- **Real-time Updates**: 5-15 second refresh intervals
+- **Real-time Updates**: 5-15 second refresh intervals (as shown in demo)
 
 ## System Requirements
 
