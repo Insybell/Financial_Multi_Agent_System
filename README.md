@@ -157,7 +157,7 @@ graph TB
     G --> H
 ```
 
-*Corrected Agent Communication Flow: Triage Agent orchestrates processing, Dashboard monitors and displays results*
+*Agent Communication Flow: Triage Agent orchestrates processing, Dashboard monitors and displays results*
 
 </div>
 
