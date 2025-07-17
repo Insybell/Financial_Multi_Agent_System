@@ -185,16 +185,6 @@ python -m pytest tests/test_financial_agents.py::TestPerformanceBenchmarks -v
 - **Agent Documentation**: Individual agent capabilities and configurations
 - **Deployment Guide**: Production deployment instructions
 
-## Contributing
-
-We welcome contributions! Please follow these steps:
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Run tests
-5. Submit a pull request
-
 ## Deployment
 
 ### Docker Deployment
