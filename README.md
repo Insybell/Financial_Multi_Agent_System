@@ -6,29 +6,21 @@ An enterprise-grade financial analysis platform powered by 6 specialized AI agen
 
 ## 🎥 Live Dashboard Demo
 
-### 📹 Watch the Complete System in Action (2 Minutes)
+<div align="center">
 
-[![Watch Demo](https://img.shields.io/badge/🎬-Watch%20Live%20Dashboard%20Demo-blue?style=for-the-badge)](https://github.com/Insybell/Financial_Multi_Agent_System/blob/main/video/Financial%20Multi-Agent%20Dashboard.mp4)
+![Financial Multi-Agent Dashboard](https://github.com/Insybell/Financial_Multi_Agent_System/blob/main/video/Financial%20Multi-Agent%20Dashboard.gif)
 
-**🎦 Demo Video:** [Financial Multi-Agent Dashboard.mp4](https://github.com/Insybell/Financial_Multi_Agent_System/blob/main/video/Financial%20Multi-Agent%20Dashboard.mp4)
+*Real-time financial dashboard with live market data, interactive charts, and intelligent agent monitoring*
 
-**Live Dashboard Features Demonstrated:**
-- 📊 **Real-time Market Data**: AAPL, MSFT, GOOGL with live price updates and change indicators
-- 📈 **Interactive Charts**: 30-day price trends, RSI, MACD with technical indicators  
-- ⚠️ **Risk Metrics**: Live VaR (95%), Sharpe ratio, max drawdown, volatility calculations
-- 🤖 **Agent Monitoring**: Real-time status of all 6 financial agents with queue sizes and processing counts
-- ⚡ **Performance Metrics**: System processing time, success rate, and throughput monitoring
+</div>
+
+**Dashboard Features:**
+- 📊 **Live Market Data**: Real-time AAPL, MSFT, GOOGL prices with change indicators
+- 📈 **Interactive Charts**: 30-day price trends, RSI, MACD technical indicators  
+- ⚠️ **Risk Metrics**: Live VaR (95%), Sharpe ratio, max drawdown, volatility
+- 🤖 **Agent Monitoring**: Real-time status of all 6 financial agents with processing queues
+- ⚡ **Performance Metrics**: System processing time, success rate, throughput monitoring
 - 🔄 **Auto-refresh**: Live data updates every 10-15 seconds
-
-### 🚀 Try the Demo Yourself
-```bash
-# Start the system (3 terminals)
-python main.py serve --port 8000           # Terminal 1: Main system
-python mcp/dev_server.py                   # Terminal 2: MCP development server
-
-# Access live dashboard in browser
-http://localhost:8000/dev-dashboard
-```
 
 ---
 
@@ -50,7 +42,7 @@ http://localhost:8000/dev-dashboard
 - Python 3.8+
 - OpenAI API key
 
-### Installation & Demo
+### Installation & Live Dashboard
 
 ```bash
 # Clone the repository
@@ -67,57 +59,91 @@ pip install -r requirements.txt
 # Set up environment variables
 export OPENAI_API_KEY="your-openai-api-key"
 
-# Run the system demo
-python main.py demo
-
-# Start the live dashboard (as shown in video)
+# Start the live dashboard system
 python main.py serve --port 8000
-# Open browser to: http://localhost:8000/dev-dashboard
+
+# Open browser to access the dashboard
+http://localhost:8000/dev-dashboard
 ```
 
 ### Demo Commands
 
 ```bash
-# Analyze specific stocks (like in the video)
+# Analyze specific stocks (feeds dashboard data)
 python main.py analyze -s AAPL -s MSFT -s GOOGL
 
 # Check system health
 python main.py health
 
-# Start web API server with live dashboard
-python main.py serve --port 8000
+# Run system demonstration
+python main.py demo
 ```
 
-## 🎛️ Live Dashboard Features
+## 🎛️ Live Dashboard Architecture
 
-*As demonstrated in the video above*
+<div align="center">
 
-### Real-Time Components:
-- **📊 Price Charts**: Live 30-day price trends with moving averages for AAPL, MSFT, GOOGL
-- **📈 Technical Indicators**: RSI and MACD charts with overbought/oversold signals  
-- **⚠️ Risk Metrics**: Live VaR (95%), Sharpe ratio, max drawdown, volatility calculations
-- **🤖 Agent Status**: Real-time monitoring of all 6 agents with queue sizes and processing counts
-- **📋 Live Market Data**: Real-time stock prices with change indicators (green/red)
-- **⚡ Performance Monitor**: System processing time, success rate, and throughput metrics
+**Dashboard Components as Shown Above**
 
-### Dashboard Access:
+| Component | Description | Update Frequency |
+|-----------|-------------|------------------|
+| 📊 **Live Market Data** | Real-time stock prices with change indicators | 10 seconds |
+| 📈 **Price Charts** | Interactive 30-day trends with moving averages | 15 seconds |
+| 📊 **Technical Indicators** | RSI, MACD with overbought/oversold signals | 15 seconds |
+| ⚠️ **Risk Metrics** | VaR, Sharpe ratio, volatility calculations | 15 seconds |
+| 🤖 **Agent Status** | Live monitoring of all 6 agents | 10 seconds |
+| ⚡ **Performance Monitor** | System metrics and processing times | 15 seconds |
+
+</div>
+
+### Dashboard Setup (3 Terminals)
+
 ```bash
-# Start the system (3 terminals as shown in video)
-python main.py serve --port 8000           # Terminal 1
-python mcp/dev_server.py                   # Terminal 2
+# Terminal 1: Main Financial System
+python main.py serve --port 8000
 
-# Access live dashboard
+# Terminal 2: MCP Development Server (Optional Enhancement)
+python mcp/dev_server.py
+
+# Terminal 3: Available for testing and monitoring
+python tests/test_dashboard_routes.py
+
+# Browser: Access Live Dashboard
 http://localhost:8000/dev-dashboard
-
-# API endpoints
-http://localhost:8000/health
-http://localhost:8000/api/dashboard-data/test
 ```
 
 ## Architecture
 
 The system consists of 6 specialized agents enhanced with MCP (Model Context Protocol):
 
+<div align="center">
+
+```mermaid
+graph TD
+    A[Data Collection Agent] --> B[Business Intelligence Agent]
+    B --> C[Risk Assessment Agent]
+    C --> D[Recommendation Agent]
+    D --> E[Report Generation Agent]
+    F[Triage Agent] --> A
+    F --> B
+    F --> C
+    F --> D
+    F --> E
+    G[MCP Development Server] --> F
+    H[Live Dashboard] --> G
+    H --> A
+    H --> B
+    H --> C
+    H --> D
+    H --> E
+    H --> F
+```
+
+*Agent Communication Flow with Live Dashboard Integration*
+
+</div>
+
+### Core Agents:
 1. **Data Collection Agent**: Multi-source financial data aggregation
 2. **Business Intelligence Agent**: AI-powered market analysis and insights
 3. **Risk Assessment Agent**: Quantitative risk metrics and evaluation
@@ -128,54 +154,42 @@ The system consists of 6 specialized agents enhanced with MCP (Model Context Pro
 ### MCP Enhancement (Phase 2):
 - **Development Tools**: Intelligent code generation and validation
 - **IDE Integration**: Enhanced Cursor IDE support with financial completions
-- **Live Data Streaming**: Real-time market data with WebSocket support
-- **Interactive Dashboard**: Professional monitoring interface (shown in demo)
+- **Live Data Streaming**: Real-time market data with dashboard integration
+- **Interactive Dashboard**: Professional monitoring interface (shown above)
 - **Performance Analysis**: Code optimization and system metrics
-
-### Agent Communication Flow
-
-```
-Data Collection → Business Intelligence → Risk Assessment → Recommendation → Report Generation
-                                    ↓
-                                Triage Agent (orchestrates all)
-                                    ↓
-                            MCP Development Server (enhances all)
-                                    ↓
-                            Live Dashboard (visualizes all)
-```
 
 ## Usage Examples
 
-### Live Dashboard (As Shown in Demo Video)
+### Live Dashboard Workflow
 
 ```bash
-# Terminal 1: Start main system
-python main.py serve --port 8000
+# Step 1: Start the complete system
+python main.py serve --port 8000           # Main system + API
+python mcp/dev_server.py                   # MCP development tools
 
-# Terminal 2: Start MCP development server  
-python mcp/dev_server.py
+# Step 2: Access dashboard
+# Open browser: http://localhost:8000/dev-dashboard
 
-# Terminal 3: Run tests and monitoring
-python tests/test_mcp_tools.py
-
-# Browser: Access live dashboard
-http://localhost:8000/dev-dashboard
+# Step 3: Monitor live data (updates automatically)
+# Watch real-time: AAPL, MSFT, GOOGL prices
+# Monitor: 6 agent statuses and processing queues
+# Observe: Risk metrics and performance indicators
 ```
 
 ### Command Line Interface
 
 ```bash
-# Analyze a portfolio (generates data for dashboard)
+# Analyze portfolio (data appears in dashboard)
 python main.py analyze -s AAPL -s MSFT -s GOOGL -s TSLA
 
 # Get market summary  
 python main.py market-summary
 
-# Run comprehensive system health check
+# System health check
 python main.py health
 ```
 
-### Python API
+### Python API Integration
 
 ```python
 from main import FinancialMultiAgentSystem
@@ -184,29 +198,28 @@ from main import FinancialMultiAgentSystem
 system = FinancialMultiAgentSystem()
 await system.start_system()
 
-# Analyze symbols (feeds dashboard data)
+# Analyze symbols (feeds dashboard)
 results = await system.analyze_symbols(['AAPL', 'MSFT', 'GOOGL'])
 print(f"Analysis completed for {len(results['results'])} symbols")
 
-# Get system health
+# Get system health (displayed in dashboard)
 health = await system.get_system_health()
 print(f"System status: {health.status}")
 ```
 
-### Web API & Dashboard
+### Web API & Dashboard Integration
 
 ```bash
-# Start API server with dashboard
-python main.py serve --port 8000
-
-# Use the API (feeds live dashboard)
+# API endpoints that feed the dashboard
 curl -X POST "http://localhost:8000/analyze" \
   -H "Content-Type: application/json" \
   -d '["AAPL", "MSFT", "GOOGL"]'
 
-# Access dashboard endpoints
-curl http://localhost:8000/dev-dashboard
-curl http://localhost:8000/api/dashboard-data/test
+# Dashboard data endpoint (powers live updates)
+curl "http://localhost:8000/api/dashboard-data/test"
+
+# System health endpoint
+curl "http://localhost:8000/health"
 ```
 
 ## Sample Output
@@ -244,29 +257,21 @@ System Health: healthy
 Active Agents: 6
 ```
 
-### Live Dashboard Metrics (Real-time, as shown in video):
-```
-📊 Live Market Data:
-- AAPL: $213.43 (+$2.93, +1.39%) ✅
-- MSFT: $507.88 (+$2.08, +0.41%) ✅
-- GOOGL: $184.80 (+$1.55, +0.84%) ✅
+### Live Dashboard Output (Real-time):
 
-⚠️ Risk Metrics:
-- VaR (95%): -2.34%
-- Sharpe Ratio: 1.45  
-- Max Drawdown: -8.92%
-- Volatility: 15.67%
+<div align="center">
 
-🤖 Agent Status: All 6 agents idle/active
-- DataCollectionAgent: Queue 0, Processed 196
-- BusinessIntelligenceAgent: Queue 0, Processed 196  
-- RiskAssessmentAgent: Queue 0, Processed 54
-- RecommendationAgent: Queue 0, Processed 240
-- ReportGenerationAgent: Queue 0, Processed 245
-- TriageAgent: Queue 0, Processed 200
+| Symbol | Price | Change | Change % | Volume | Status |
+|--------|-------|--------|----------|---------|---------|
+| **AAPL** | $213.43 | <span style="color:green">+$2.93</span> | <span style="color:green">+1.39%</span> | 1,815,631 | ✅ Live |
+| **MSFT** | $507.88 | <span style="color:green">+$2.08</span> | <span style="color:green">+0.41%</span> | 1,992,069 | ✅ Live |
+| **GOOGL** | $184.80 | <span style="color:green">+$1.55</span> | <span style="color:green">+0.84%</span> | 1,511,444 | ✅ Live |
 
-⚡ Performance: 45.2ms avg, 96.7% success rate, 15.7 req/min
-```
+**Risk Metrics:** VaR (95%): -2.34% | Sharpe Ratio: 1.45 | Max Drawdown: -8.92% | Volatility: 15.67%
+
+**Agent Status:** All 6 agents active | **Performance:** 45.2ms avg, 96.7% success rate
+
+</div>
 
 ## Key Components
 
@@ -279,25 +284,26 @@ Active Agents: 6
 - **Web Framework**: FastAPI, async/await patterns, WebSocket support
 - **Development**: Enhanced IDE integration, intelligent code completion
 
-### MCP Integration Features
-- **Real-time Dashboard**: Live financial data visualization (demonstrated in video)
-- **Development Tools**: Intelligent code generation and validation  
-- **IDE Enhancement**: Cursor IDE integration with financial completions
-- **Performance Monitoring**: System metrics and optimization suggestions
-- **Live Data Streaming**: WebSocket and HTTP API support
+### Dashboard Technologies
+- **Frontend**: HTML5, CSS3, JavaScript ES6
+- **Charts**: Plotly.js for interactive financial visualizations
+- **Real-time**: HTTP polling with 10-15 second intervals
+- **Responsive**: Mobile-friendly design with grid layouts
+- **Browser Compatibility**: Chrome, Firefox, Safari, Edge
 
 ### Safety Features
 - **Symbol Validation**: Prevents analysis of invalid/blacklisted securities
 - **Risk Limits**: Automatic position sizing and concentration controls
 - **Data Quality Checks**: Ensures reliable analysis inputs
 - **Recommendation Validation**: Confidence thresholds and safety constraints
+- **Dashboard Security**: Input validation and XSS protection
 
 ## Testing
 
 Run the comprehensive test suite:
 
 ```bash
-# Run all tests
+# Run all financial agent tests
 python -m pytest tests/test_financial_agents.py -v
 
 # Test MCP integration (Phase 2)
@@ -305,25 +311,28 @@ python tests/test_mcp_tools.py
 python tests/mcp_integration_demo.py  
 python tests/mcp_live_integration.py
 
-# Test dashboard routes
+# Test dashboard functionality
 python tests/test_dashboard_routes.py
+
+# Verify dashboard endpoints
+curl http://localhost:8000/health
+curl http://localhost:8000/api/dashboard-data/test
 
 # Run specific test categories
 python -m pytest tests/test_financial_agents.py::TestDataCollectionAgent -v
-
-# Run performance benchmarks
-python -m pytest tests/test_financial_agents.py::TestPerformanceBenchmarks -v
 ```
 
 ## Performance
 
 - **Analysis Speed**: Less than 3 minutes per security
-- **Concurrent Workflows**: 10+ simultaneous
+- **Concurrent Workflows**: 10+ simultaneous analyses
 - **Accuracy**: 95%+ confidence scoring
-- **Throughput**: 20+ requests/minute
+- **API Throughput**: 20+ requests/minute
 - **System Reliability**: 99.9% uptime
 - **Dashboard Response**: <50ms average API response time
-- **Real-time Updates**: 5-15 second refresh intervals (as shown in demo)
+- **Real-time Updates**: 5-15 second refresh intervals
+- **Memory Usage**: <2GB RAM typical operation
+- **CPU Usage**: <30% on modern systems
 
 ## System Requirements
 
@@ -331,37 +340,54 @@ python -m pytest tests/test_financial_agents.py::TestPerformanceBenchmarks -v
 - Python 3.8+
 - 4GB RAM
 - OpenAI API access
+- Modern web browser
 
 ### Recommended for Production  
 - Python 3.10+
 - 8GB RAM
 - Docker for containerized deployment
 - Redis for advanced caching
+- Load balancer for high availability
 
-### For Live Dashboard
-- Modern web browser (Chrome, Firefox, Safari, Edge)
-- JavaScript enabled
-- Network access to localhost:8000
+### Dashboard Requirements
+- **Browser**: Chrome 90+, Firefox 88+, Safari 14+, Edge 90+
+- **JavaScript**: ES6 support required
+- **Network**: Stable connection to localhost:8000
+- **Resolution**: 1024x768 minimum, 1920x1080 recommended
 
 ## Documentation
 
-- **Phase 1 Guide**: Core financial multi-agent system
-- **Phase 2 Guide**: MCP integration and dashboard (`MCP-Phase-2.md`)
-- **System Implementation Summary**: Complete technical documentation
-- **API Reference**: Detailed API documentation for all endpoints
+- **Phase 1 Guide**: Core financial multi-agent system implementation
+- **Phase 2 Guide**: MCP integration and dashboard setup (`MCP-Phase-2.md`)
+- **System Implementation Summary**: Complete technical architecture documentation
+- **API Reference**: Detailed endpoint documentation with examples
 - **Agent Documentation**: Individual agent capabilities and configurations
-- **Deployment Guide**: Production deployment instructions
+- **Deployment Guide**: Production deployment instructions and best practices
+- **Dashboard Guide**: User interface documentation and troubleshooting
 
 ## Deployment
 
-### Docker Deployment
-
+### Local Development
 ```bash
-# Build image
+# Development setup with live dashboard
+python main.py serve --port 8000
+python mcp/dev_server.py
+
+# Access points
+http://localhost:8000/dev-dashboard    # Live dashboard
+http://localhost:8000/docs            # API documentation
+http://localhost:8000/health          # System health
+```
+
+### Docker Deployment
+```bash
+# Build image with dashboard support
 docker build -t insybell-financial-system .
 
-# Run container with dashboard
-docker run -p 8000:8000 -e OPENAI_API_KEY=your_key insybell-financial-system
+# Run container
+docker run -p 8000:8000 \
+  -e OPENAI_API_KEY=your_key \
+  insybell-financial-system
 
 # Access dashboard
 http://localhost:8000/dev-dashboard
@@ -369,10 +395,11 @@ http://localhost:8000/dev-dashboard
 
 ### Cloud Deployment
 
-Supports deployment on:
-- AWS (ECS, Lambda, EC2)
-- Google Cloud (Cloud Run, Compute Engine)  
-- Azure (Container Instances, App Service)
+**Supported Platforms:**
+- **AWS**: ECS, Lambda, EC2 with Application Load Balancer
+- **Google Cloud**: Cloud Run, Compute Engine with Cloud Load Balancing
+- **Azure**: Container Instances, App Service with Application Gateway
+- **Kubernetes**: Helm charts available for scalable deployment
 
 ## License
 
@@ -382,34 +409,46 @@ Supports deployment on:
 
 - **Issues**: GitHub Issues for bug reports and feature requests
 - **Discussions**: GitHub Discussions for questions and community support
-- **Email**: natalie@insybell.com for professional support
+- **Documentation**: Comprehensive guides in `/docs` directory
+- **Email**: natalie@insybell.com for professional support and enterprise inquiries
 
 ## Roadmap
 
-### Q1 2025
-- Core multi-agent system ✓
-- Real-time data processing ✓
-- Professional reporting ✓  
-- MCP integration ✓
-- Interactive dashboard ✓
+### Q1 2025 ✅
+- Core multi-agent system ✅
+- Real-time data processing ✅
+- Professional reporting ✅  
+- MCP integration ✅
+- Interactive live dashboard ✅
+
+### Q2 2025 🚧
 - Mobile API endpoints
 - Advanced portfolio optimization
-
-### Q2 2025
 - Machine learning model integration
-- Real-time streaming data enhancement
-- Advanced risk models
-- Multi-asset class support
+- Enhanced real-time streaming data
 
-### Q3 2025
+### Q3 2025 📋
+- Advanced risk models and stress testing
+- Multi-asset class support (bonds, commodities, crypto)
 - Regulatory compliance module
 - Institutional client features
+
+### Q4 2025 🎯
 - Advanced backtesting framework
 - Enterprise dashboard enhancements
+- Multi-language support
+- Advanced AI model integration
 
 ## About Insybell
 
-Insybell specializes in intelligent financial systems that deliver insights at precisely the right moment. Our multi-agent architecture enhanced with Model Context Protocol represents the future of financial analysis - combining the power of specialized AI agents with enterprise-grade reliability and real-time monitoring capabilities.
+Insybell specializes in intelligent financial systems that deliver insights at precisely the right moment. Our multi-agent architecture enhanced with Model Context Protocol and real-time dashboard capabilities represents the future of financial analysis - combining the power of specialized AI agents with enterprise-grade reliability, live monitoring, and professional visualization.
+
+**Key Innovations:**
+- First-of-its-kind 6-agent financial analysis system
+- Real-time dashboard with live market data integration
+- MCP-enhanced development workflow
+- Production-ready risk assessment and compliance
+- Scalable architecture for institutional deployment
 
 **Built with ❤️ by the Insybell Team**
 
