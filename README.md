@@ -119,29 +119,64 @@ The system consists of 6 specialized agents enhanced with MCP (Model Context Pro
 <div align="center">
 
 ```mermaid
-graph TD
-    A[Data Collection Agent] --> B[Business Intelligence Agent]
-    B --> C[Risk Assessment Agent]
-    C --> D[Recommendation Agent]
-    D --> E[Report Generation Agent]
-    F[Triage Agent] --> A
+graph TB
+    subgraph "Presentation Layer"
+        H[Live Dashboard]
+    end
+    
+    subgraph "Development Layer"
+        G[MCP Development Server]
+    end
+    
+    subgraph "Orchestration Layer"
+        F[Triage Agent]
+    end
+    
+    subgraph "Processing Layer"
+        A[Data Collection Agent] --> B[Business Intelligence Agent]
+        B --> C[Risk Assessment Agent]
+        C --> D[Recommendation Agent]
+        D --> E[Report Generation Agent]
+    end
+    
+    %% Control flow (commands)
+    F --> A
     F --> B
     F --> C
     F --> D
     F --> E
-    G[MCP Development Server] --> F
-    H[Live Dashboard] --> G
-    H --> A
-    H --> B
-    H --> C
-    H --> D
-    H --> E
-    H --> F
+    G --> F
+    
+    %% Data flow (monitoring and display)
+    A --> H
+    B --> H
+    C --> H
+    D --> H
+    E --> H
+    F --> H
+    G --> H
 ```
 
-*Agent Communication Flow with Live Dashboard Integration*
+*Corrected Agent Communication Flow: Triage Agent orchestrates processing, Dashboard monitors and displays results*
 
 </div>
+
+### System Flow:
+
+#### **1. Control Flow (Task Execution):**
+```
+User Request → Triage Agent → Individual Agents → Processing → Results
+```
+
+#### **2. Data Flow (Dashboard Monitoring):**
+```
+Agents → API Endpoints → Dashboard Display → Live Updates
+```
+
+#### **3. Development Flow (MCP Enhancement):**
+```
+MCP Development Server → Triage Agent → Enhanced Agent Capabilities
+```
 
 ### Core Agents:
 1. **Data Collection Agent**: Multi-source financial data aggregation
@@ -149,7 +184,7 @@ graph TD
 3. **Risk Assessment Agent**: Quantitative risk metrics and evaluation
 4. **Recommendation Agent**: Multi-model investment recommendations
 5. **Report Generation Agent**: Professional reports with visualizations
-6. **Triage Agent**: Intelligent request prioritization and routing
+6. **Triage Agent**: Intelligent request prioritization and workflow orchestration
 
 ### MCP Enhancement (Phase 2):
 - **Development Tools**: Intelligent code generation and validation
@@ -164,7 +199,7 @@ graph TD
 
 ```bash
 # Step 1: Start the complete system
-python main.py serve --port 8000           # Main system + API
+python main.py serve --port 8000           # Main system + API + Dashboard
 python mcp/dev_server.py                   # MCP development tools
 
 # Step 2: Access dashboard
@@ -453,3 +488,15 @@ Insybell specializes in intelligent financial systems that deliver insights at p
 **Built with ❤️ by the Insybell Team**
 
 *Intelligence that knows when to ring* 🔔
+
+
+
+
+
+
+
+
+
+
+
+
