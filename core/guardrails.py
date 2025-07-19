@@ -1,9 +1,3 @@
-# core/guardrails.py
-"""
-Safety guardrails and validation for the Financial Multi-Agent System
-Author: Zhang Weiling (Insybell)
-"""
-
 import logging
 import pandas as pd
 import numpy as np
