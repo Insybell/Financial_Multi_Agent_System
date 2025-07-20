@@ -610,6 +610,10 @@ Insybell specializes in intelligent financial systems that deliver insights at p
 - Comprehensive safety guardrails for institutional deployment
 - Scalable architecture with built-in regulatory compliance
 
+⚠️ Disclaimer
+
+This software is for informational purposes only. It is not intended as financial advice. Always consult with qualified financial professionals before making investment decisions.
+
 **Built with ❤️ by the Insybell Team**
 
 *Intelligence that knows when to ring* 🔔
