@@ -179,7 +179,7 @@ graph TB
     end
     
     subgraph "Development Layer"
-        G[MCP Development Server]
+        G[Development Server]
     end
     
     subgraph "Safety Layer"
