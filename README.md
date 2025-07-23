@@ -266,7 +266,7 @@ MCP Development Server → Triage Agent → Enhanced Agent Capabilities
    - Portfolio allocation constraints by risk level
    - Real-time violation monitoring and alerting
 
-### MCP Enhancement (Phase 2):
+### Server Enhancement (Phase 2):
 - **Development Tools**: Intelligent code generation and validation
 - **IDE Integration**: Enhanced Cursor IDE support with financial completions
 - **Live Data Streaming**: Real-time market data with dashboard integration
