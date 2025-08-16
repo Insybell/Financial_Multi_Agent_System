@@ -38,7 +38,7 @@ An enterprise-grade financial analysis platform powered by 6 specialized AI agen
 
 ## 🛡️ Safety Guardrails & Compliance
 
-Our system includes comprehensive safety controls designed for institutional-grade financial analysis:
+This system includes comprehensive safety controls designed for institutional-grade financial analysis:
 
 ### **🔒 Financial Validation Controls**
 
