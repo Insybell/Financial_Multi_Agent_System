@@ -29,7 +29,6 @@ An enterprise-grade financial analysis platform powered by 6 specialized AI agen
 
 - **Multi-Agent Intelligence**: 6 specialized AI agents for superior analysis depth
 - **Real-time Analysis**: Live financial data processing with yfinance integration
-- **MCP Integration**: Model Context Protocol for enhanced development experience
 - **Interactive Dashboard**: Real-time monitoring with live charts and metrics
 - **Comprehensive Risk Assessment**: VaR, Sharpe ratio, drawdown analysis
 - **AI-Enhanced Insights**: LLM-powered market intelligence using OpenAI GPT-4
