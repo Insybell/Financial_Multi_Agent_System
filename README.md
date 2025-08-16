@@ -167,7 +167,7 @@ http://localhost:8000/dev-dashboard
 
 ## Architecture
 
-The system consists of 6 specialized agents enhanced with MCP (Model Context Protocol) and comprehensive safety guardrails:
+The system consists of 6 specialized agents and comprehensive safety guardrails:
 
 <div align="center">
 
