@@ -1,7 +1,5 @@
 # 🔔 Financial Multi-Agent System
 
-**Intelligence that knows when to ring** - *🔔 Insybell*
-
 An enterprise-grade financial analysis platform powered by 6 specialized AI agents working in harmony to deliver intelligent investment insights, comprehensive risk assessment, and automated reporting with built-in safety guardrails.
 
 ## 🎥 Live Dashboard Demo
@@ -555,56 +553,9 @@ http://localhost:8000/dev-dashboard
 - **Azure**: Container Instances, App Service with Application Gateway
 - **Kubernetes**: Helm charts available for scalable deployment
 
-## License
-
-🔒 Proprietary – See LICENSE.md for details
-
-## Support
-
-- **Issues**: GitHub Issues for bug reports and feature requests
-- **Discussions**: GitHub Discussions for questions and community support
-- **Documentation**: Comprehensive guides in `/docs` directory
-- **Email**: natalie@insybell.com for professional support and enterprise inquiries
-
-## Roadmap
-
-### Q1 2025 ✅
-- Core multi-agent system ✅
-- Real-time data processing ✅
-- Professional reporting ✅  
-- MCP integration ✅
-- Interactive live dashboard ✅
-- Comprehensive safety guardrails ✅
-
-### Q2 2025 🚧
-- Mobile API endpoints
-- Advanced portfolio optimization
-- Machine learning model integration
-- Enhanced real-time streaming data
-- Advanced compliance reporting
-
-### Q3 2025 📋
-- Advanced risk models and stress testing
-- Multi-asset class support (bonds, commodities, crypto)
-- Regulatory compliance module expansion
-- Institutional client features
-- Enhanced safety monitoring
-
-### Q4 2025 🎯
-- Advanced backtesting framework
-- Enterprise dashboard enhancements
-- Multi-language support
-- Advanced AI model integration
-- Regulatory audit tools
-
-## About Insybell
-
-Insybell specializes in intelligent financial systems that deliver insights at precisely the right moment. Our multi-agent architecture enhanced with Model Context Protocol, real-time dashboard capabilities, and comprehensive safety guardrails represents the future of financial analysis - combining the power of specialized AI agents with enterprise-grade reliability, live monitoring, professional visualization, and institutional-grade safety controls.
-
 **Key Innovations:**
 - First-of-its-kind 6-agent financial analysis system
 - Real-time dashboard with live market data integration
-- MCP-enhanced development workflow
 - Production-ready risk assessment and compliance
 - Comprehensive safety guardrails for institutional deployment
 - Scalable architecture with built-in regulatory compliance
@@ -612,7 +563,3 @@ Insybell specializes in intelligent financial systems that deliver insights at p
 ⚠️ Disclaimer
 
 This software is for informational purposes only. It is not intended as financial advice. Always consult with qualified financial professionals before making investment decisions.
-
-**Built with ❤️ by the Insybell Team**
-
-*Intelligence that knows when to ring* 🔔
