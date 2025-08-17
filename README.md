@@ -1,6 +1,6 @@
-# 🔔 Financial Multi-Agent System
+# Financial Multi-Agent System
 
-An enterprise-grade financial analysis platform powered by 6 specialized AI agents working in harmony to deliver intelligent investment insights, comprehensive risk assessment, and automated reporting with built-in safety guardrails.
+An financial analysis platform powered by 6 specialized AI agents working in harmony to deliver intelligent investment insights, comprehensive risk assessment, and automated reporting with built-in safety guardrails.
 
 ## 🎥 Live Dashboard Demo
 
@@ -96,7 +96,7 @@ status, issues = guardrails.validate_recommendation(recommendation)
 
 ```bash
 # Clone the repository
-git clone https://github.com/Insybell/Financial_Multi_Agent_System.git
+git clone https://github.com/NatalieCheong/Financial_Multi_Agent_System.git
 cd Financial_Multi_Agent_System
 
 # Set up virtual environment
@@ -241,9 +241,9 @@ Data/Recommendations → Financial Guardrails → Validation → Approval/Reject
 Agents → API Endpoints → Dashboard Display → Live Updates → Safety Status
 ```
 
-#### **4. Development Flow (MCP Enhancement):**
+#### **4. Development Flow:**
 ```
-MCP Development Server → Triage Agent → Enhanced Agent Capabilities
+Development Server → Triage Agent → Enhanced Agent Capabilities
 ```
 
 ### Core Agents:
@@ -277,7 +277,7 @@ MCP Development Server → Triage Agent → Enhanced Agent Capabilities
 ```bash
 # Step 1: Start the complete system
 python main.py serve --port 8000           # Main system + API + Dashboard + Guardrails
-python mcp/dev_server.py                   # MCP development tools
+python mcp/dev_server.py                   # Development tools
 
 # Step 2: Access dashboard
 # Open browser: http://localhost:8000/dev-dashboard
@@ -508,8 +508,7 @@ python -m pytest tests/test_financial_agents.py::TestDataCollectionAgent -v
 
 ## Documentation
 
-- **Phase 1 Guide**: Core financial multi-agent system implementation
-- **Phase 2 Guide**: MCP integration and dashboard setup (`MCP-Phase-2.md`)
+- **Development Guide**: Core financial multi-agent system implementation
 - **Safety Guide**: Comprehensive guardrail configuration and monitoring
 - **System Implementation Summary**: Complete technical architecture documentation
 - **API Reference**: Detailed endpoint documentation with examples
@@ -530,35 +529,26 @@ http://localhost:8000/dev-dashboard    # Live dashboard with safety monitoring
 http://localhost:8000/docs            # API documentation
 http://localhost:8000/health          # System health including guardrails
 ```
-
-### Docker Deployment
-```bash
-# Build image with dashboard and safety support
-docker build -t insybell-financial-system .
-
-# Run container
-docker run -p 8000:8000 \
-  -e OPENAI_API_KEY=your_key \
-  insybell-financial-system
-
-# Access dashboard
-http://localhost:8000/dev-dashboard
-```
-
-### Cloud Deployment
-
-**Supported Platforms:**
-- **AWS**: ECS, Lambda, EC2 with Application Load Balancer
-- **Google Cloud**: Cloud Run, Compute Engine with Cloud Load Balancing
-- **Azure**: Container Instances, App Service with Application Gateway
-- **Kubernetes**: Helm charts available for scalable deployment
-
 **Key Innovations:**
 - First-of-its-kind 6-agent financial analysis system
 - Real-time dashboard with live market data integration
 - Production-ready risk assessment and compliance
 - Comprehensive safety guardrails for institutional deployment
 - Scalable architecture with built-in regulatory compliance
+
+🙏 Acknowledgments
+
+This project builds upon several outstanding open-source libraries and services that make sophisticated financial AI systems accessible to developers:
+
+- **[OpenAI](https://openai.com/)** - For providing the GPT-4 API that powers our intelligent financial analysis and natural language processing capabilities
+- **[yfinance](https://pypi.org/project/yfinance/)** - For the reliable and comprehensive Yahoo Finance API wrapper that enables real-time market data access
+- **[LangChain](https://python.langchain.com/)** - For the powerful framework that simplifies AI application development and agent orchestration
+- **[FastAPI](https://fastapi.tiangolo.com/)** - For the modern, fast web framework that powers our real-time dashboard and API endpoints
+- **[Plotly](https://plotly.com/python/)** - For the interactive visualization library that brings our financial data to life
+- **[pandas](https://pandas.pydata.org/)** - For the essential data manipulation and analysis capabilities
+- **[NumPy](https://numpy.org/)** & **[SciPy](https://scipy.org/)** - For the foundational scientific computing libraries that enable our quantitative risk calculations
+
+Special thanks to the broader open-source community for creating the ecosystem that makes projects like this possible.
 
 ⚠️ Disclaimer
 
