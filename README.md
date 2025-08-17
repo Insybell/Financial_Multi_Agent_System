@@ -36,7 +36,7 @@ An financial analysis platform powered by 6 specialized AI agents working in har
 
 ## 🛡️ Safety Guardrails & Compliance
 
-This system includes comprehensive safety controls designed for institutional-grade financial analysis:
+This system includes comprehensive safety controls designed for financial analysis:
 
 ### **🔒 Financial Validation Controls**
 
@@ -423,16 +423,8 @@ Violation History: 0 violations in last 24 hours
 - **Data Processing**: Pandas, NumPy, SciPy
 - **Financial Analysis**: yfinance, custom risk models
 - **Visualization**: Plotly, interactive charts, real-time dashboard
-- **Communication**: MCP protocol, async messaging
 - **Web Framework**: FastAPI, async/await patterns, WebSocket support
 - **Development**: Enhanced IDE integration, intelligent code completion
-
-### Dashboard Technologies
-- **Frontend**: HTML5, CSS3, JavaScript ES6
-- **Charts**: Plotly.js for interactive financial visualizations
-- **Real-time**: HTTP polling with 10-15 second intervals
-- **Responsive**: Mobile-friendly design with grid layouts
-- **Browser Compatibility**: Chrome, Firefox, Safari, Edge
 
 ### Safety & Compliance Features
 - **🔒 Symbol Validation**: Prevents analysis of invalid/blacklisted securities with real-time blacklist checking
@@ -492,19 +484,6 @@ python -m pytest tests/test_financial_agents.py::TestDataCollectionAgent -v
 - 4GB RAM
 - OpenAI API access
 - Modern web browser
-
-### Recommended for Production  
-- Python 3.10+
-- 8GB RAM (includes safety monitoring overhead)
-- Docker for containerized deployment
-- Redis for advanced caching and guardrail state
-- Load balancer for high availability
-
-### Dashboard Requirements
-- **Browser**: Chrome 90+, Firefox 88+, Safari 14+, Edge 90+
-- **JavaScript**: ES6 support required
-- **Network**: Stable connection to localhost:8000
-- **Resolution**: 1024x768 minimum, 1920x1080 recommended
 
 ## Documentation
 
